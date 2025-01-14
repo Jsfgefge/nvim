@@ -11,11 +11,11 @@ vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 
 -- highlight text when we something
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking text',
-  group = vim.api.nvim_create_augroup('highlight yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+    desc = 'Highlight when yanking text',
+    group = vim.api.nvim_create_augroup('highlight yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
 
 vim.opt.tabstop = 4
@@ -32,6 +32,8 @@ vim.o.relativenumber = true
 vim.o.clipboard = 'unnamedplus'
 
 vim.opt.scrolloff = 8
+
+vim.opt.colorcolumn = "80"
 
 vim.cmd "colorscheme habamax"
 vim.keymap.set('c', '<tab>', '<C-z>', { silent = false }) -- to fix cmp

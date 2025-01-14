@@ -18,6 +18,7 @@ return {
       local capabilites = require('blink.cmp').get_lsp_capabilities()
       require("lspconfig").lua_ls.setup { capabilites = capabilites }
       require("lspconfig").clangd.setup { capabilites = capabilites }
+      require("lspconfig").ts_ls.setup { capabilites = capabilites }
 
       --Save with Ctrl+K, Ctrl+D
       vim.keymap.set("n", "<C-K><C-D>", function() vim.lsp.buf.format() end)
