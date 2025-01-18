@@ -13,12 +13,38 @@ return {
           },
         },
       },
+      { 'williamboman/mason.nvim', opts = {} },
+      'williamboman/mason-lspconfig.nvim',
     },
     config = function()
       local capabilites = require('blink.cmp').get_lsp_capabilities()
+
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+          }
+        }
+      })
+      require("mason-lspconfig").setup {
+        ensure_installed = {
+          "pyright",
+          "lua_ls",
+          "clangd",
+          "ts_ls",
+        }
+      }
+
       require("lspconfig").lua_ls.setup { capabilites = capabilites }
       require("lspconfig").clangd.setup { capabilites = capabilites }
       require("lspconfig").ts_ls.setup { capabilites = capabilites }
+      require("lspconfig").pyright.setup { capabilites = capabilites }
+
+
+
+
 
       --Save with Ctrl+K, Ctrl+D
       vim.keymap.set("n", "<C-K><C-D>", function() vim.lsp.buf.format() end)
