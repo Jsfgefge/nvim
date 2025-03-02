@@ -5,15 +5,22 @@ return {
 
     version = '*',
     opts = {
-      keymap = { preset = 'default' },
+      keymap = { preset = 'super-tab' },
 
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono'
       },
       completion = {
-        -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end }
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = true
+          }
+        }
       },
+
+
 
       signature = { enabled = true }
     },

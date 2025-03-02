@@ -34,6 +34,7 @@ return {
           "lua_ls",
           "clangd",
           "ts_ls",
+          "jdtls",
         }
       }
 
@@ -41,13 +42,14 @@ return {
       require("lspconfig").clangd.setup { capabilites = capabilites }
       require("lspconfig").ts_ls.setup { capabilites = capabilites }
       require("lspconfig").pyright.setup { capabilites = capabilites }
-
+      require 'lspconfig'.jdtls.setup {}
 
 
 
 
       --Save with Ctrl+K, Ctrl+D
       vim.keymap.set("n", "<C-K><C-D>", function() vim.lsp.buf.format() end)
+      vim.keymap.set("n", "<F12>", function() vim.lsp.buf.definition() end)
 
       --Save with :w
       vim.api.nvim_create_autocmd('LspAttach', {
