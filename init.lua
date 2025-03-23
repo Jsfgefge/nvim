@@ -35,7 +35,8 @@ vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "80"
 
-vim.cmd "colorscheme habamax"
+-- vim.cmd "colorscheme habamax"
+vim.cmd "colorscheme catppuccin-mocha"
 vim.keymap.set('c', '<tab>', '<C-z>', { silent = false }) -- to fix cmp
 
 
