@@ -8,6 +8,14 @@ vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<C-s>", "<cmd>:w<CR>")
+
+-- Tmux Navigation
+vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
+
 
 -- highlight text when we something
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -36,9 +44,22 @@ vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "80"
 
 -- vim.cmd "colorscheme habamax"
-vim.cmd "colorscheme catppuccin-mocha"
+vim.cmd "colorscheme poimandres"
+-- vim.cmd "colorscheme gruvbox"
+-- vim.cmd "colorscheme catppuccin-mocha"
 vim.keymap.set('c', '<tab>', '<C-z>', { silent = false }) -- to fix cmp
 
 
 --LSP Mappings
 vim.keymap.set("n", "grn", ":lua vim.lsp.buf.rename()<CR>")
+
+
+-- Enable autoread and set up checking triggers
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = "*",
+})
+
+vim.cmd [[highlight Normal guibg=none]]
+vim.cmd [[highlight NonText guibg=none]]

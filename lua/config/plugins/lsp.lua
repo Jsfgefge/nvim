@@ -17,7 +17,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
     },
     config = function()
-      local capabilites = require('blink.cmp').get_lsp_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       require("mason").setup({
         ui = {
@@ -38,11 +38,34 @@ return {
         }
       }
 
-      require("lspconfig").lua_ls.setup { capabilites = capabilites }
-      require("lspconfig").clangd.setup { capabilites = capabilites }
-      require("lspconfig").ts_ls.setup { capabilites = capabilites }
-      require("lspconfig").pyright.setup { capabilites = capabilites }
-      require 'lspconfig'.jdtls.setup {}
+      require("lspconfig").lua_ls.setup { capabilites = capabilities }
+      require("lspconfig").clangd.setup { capabilites = capabilities }
+      require("lspconfig").ts_ls.setup { capabilites = capabilities }
+      require("lspconfig").pyright.setup { capabilites = capabilities }
+      require 'lspconfig'.jdtls.setup {
+        capabilities = capabilities,
+        root_dir = function(fname)
+          return vim.fs.dirname(vim.fs.find({ 'build.xml', '.git', 'mvnw', 'gradlew' }, { upward = true })[1])
+        end,
+        settings = {
+          java = {
+            configuration = {
+              sources = {
+                sourcePaths = {
+                  "src", -- Main source directory (your Java files live here)
+                  -- "test" -- Uncomment if you have test sources
+                }
+              }
+            },
+            project = {
+              referencedLibraries = {
+                "lib/**/*.jar" -- If you have external libraries in a `lib` folder
+              }
+            }
+          }
+        }
+
+      }
 
 
 
