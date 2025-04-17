@@ -44,9 +44,9 @@ vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "80"
 
 -- vim.cmd "colorscheme habamax"
-vim.cmd "colorscheme poimandres"
+-- vim.cmd "colorscheme poimandres"
 -- vim.cmd "colorscheme gruvbox"
--- vim.cmd "colorscheme catppuccin-mocha"
+vim.cmd "colorscheme catppuccin-mocha"
 vim.keymap.set('c', '<tab>', '<C-z>', { silent = false }) -- to fix cmp
 
 
@@ -61,5 +61,5 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
 })
 
-vim.cmd [[highlight Normal guibg=none]]
-vim.cmd [[highlight NonText guibg=none]]
+-- vim.cmd [[highlight Normal guibg=none]]
+-- vim.cmd [[highlight NonText guibg=none]]
