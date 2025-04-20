@@ -42,10 +42,24 @@ return {
       require("lspconfig").clangd.setup { capabilites = capabilities }
       require("lspconfig").ts_ls.setup { capabilites = capabilities }
       require("lspconfig").pyright.setup { capabilites = capabilities }
+
+
+
+
+
+      local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
       require 'lspconfig'.jdtls.setup {
+        cmd = {
+          'jdtls',
+          '--jvm-arg=-Duser.home=' .. os.getenv("HOME"),
+          '-data', workspace_dir,
+        },
+
         capabilities = capabilities,
         root_dir = function(fname)
-          return vim.fs.dirname(vim.fs.find({ 'build.xml', '.git', 'mvnw', 'gradlew' }, { upward = true })[1])
+          local root = vim.fs.find({ 'build.xml', '.git', 'mvnw', 'gradlew' }, { upward = true })[1]
+          return root and vim.fs.dirname(root) or vim.fn.getcwd()
         end,
         settings = {
           java = {
@@ -54,7 +68,9 @@ return {
                 sourcePaths = {
                   "src", -- Main source directory (your Java files live here)
                   -- "test" -- Uncomment if you have test sources
-                }
+                },
+                updateBuildConfiguration = "interactive",
+
               }
             },
             project = {
@@ -66,8 +82,6 @@ return {
         }
 
       }
-
-
 
 
       --Save with Ctrl+K, Ctrl+D

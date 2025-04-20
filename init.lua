@@ -10,7 +10,7 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 vim.keymap.set("n", "<C-s>", "<cmd>:w<CR>")
 
-vim.keymap.set('n', '<Esc><Esc>', ':nohlsearch<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<space><Esc>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 -- Tmux Navigation
 vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
@@ -48,8 +48,9 @@ vim.opt.colorcolumn = "80"
 -- vim.cmd "colorscheme industry"
 -- vim.cmd "colorscheme habamax"
 -- vim.cmd "colorscheme poimandres"
-vim.cmd "colorscheme gruvbox"
+-- vim.cmd "colorscheme gruvbox"
 -- vim.cmd "colorscheme catppuccin-mocha"
+vim.cmd "colorscheme rose-pine"
 vim.keymap.set('c', '<tab>', '<C-z>', { silent = false }) -- to fix cmp
 
 
