@@ -11,7 +11,8 @@ return {
         defaults = { --idk if this actually do something
           layout_config = {
             vertical = { width = 1 }
-          }
+          },
+          -- initial_mode = "normal"
         },
         pickers = {
           find_files = { theme = "dropdown"
